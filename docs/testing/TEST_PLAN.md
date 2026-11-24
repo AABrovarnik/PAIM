@@ -26,3 +26,6 @@ Every FR01–18 is mandatory; US01–42 are executable acceptance scenarios in U
 7–14 days, start end of week 5 if P0 safe. Owner measures median quick entry <10s, daily planning <=10min, forgotten commitments, perceived usefulness and overhead; baseline before pilot. Zero unauthorized external writes and duplicate internal effects on replay. Record notification failures, not promise guaranteed Telegram delivery. All critical defects block release. If pilot incomplete at week 6, release candidate only.
 ## Reporting
 docs/testing/results/YYYY-MM-DD.md: commit SHA, environment, test ID, command, expected/actual, pass/fail/blocked, evidence redacted, defects and retest. CI: lint, typecheck, unit, integration with Postgres, e2e, secret scan. No fabricated test results or coverage. Owner signs acceptance; Board #2 reviews spec before coding, Board #3 reviews release candidate.
+
+## Дополнение T17 — согласованные UX-референсы
+Проверить умные списки на одной БД (Сегодня/Предстоящие/Без срока/Ожидаю); desktop показывает список и календарь совместно, mobile позволяет переключение без потери состояния; перенос блока сохраняет дедлайн. Дневной ритуал позволяет выбрать три результата, увидеть перегрузку и подтвердить план без внешней записи. Проверить отсутствие новых обязательных полей быстрого ввода.
