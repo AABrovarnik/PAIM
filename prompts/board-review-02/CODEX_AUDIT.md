@@ -1,0 +1,3 @@
+# Codex: CTO / QA Lead
+Прочитай COMMON_PROTOCOL.md в этом каталоге и выполни его. Результат: локальный docs/board/review-02/reports/CODEX_REPORT.md.
+Проверь реализуемость модульного монолита, границы модулей, миграции и ограничения PostgreSQL, FK/ownership, конкурентные операции, очередь/lease/outbox, идемпотентность, API контракты и статусы, OAuth/Calendar/Gmail/Telegram/OpenClaw, NFR, CI, восстановление, оценку 6 недель. Проверь соответствие полей API и схемы; смоделируй crash до/после внешнего эффекта, истечение lease, stale ETag, replay approval, concurrent cycle, DST и split COUNT. Дай конкретные поправки к контрактам и тестам, список spikes и зависимости рабочих пакетов. Не реализуй приложение. Префикс CX.

@@ -1,0 +1,3 @@
+# Claude Code: бизнес-логика / data architect / Red Team
+Прочитай COMMON_PROTOCOL.md в этом каталоге и выполни его. Результат: локальный docs/board/review-02/reports/CLAUDE_REPORT.md.
+Проверь семантику task/commitment/event/delegation/idea, state machines, инварианты и переходы, recurrence single/future/all, календарные границы и DST, арифметику примеров и формулы, null/override, приоритет и матрицу, емкость и конфликт слотов, зависимости/иерархию, память и retention, дедупликацию, injection и права доступа. Построй минимум 10 конкретных контрпримеров и ожидаемых результатов. Найди противоречия между FR/US/API/schema/algorithms/tests. Проверь угрозы через почту, Telegram, подтверждения, журналы и бэкапы. Предложи минимальные изменения без расширения MVP. Префикс CL.
