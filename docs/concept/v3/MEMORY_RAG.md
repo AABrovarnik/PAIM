@@ -1,0 +1,26 @@
+# Персональная память и RAG
+Статус: DRAFT | 2026-11-25.
+## 1. Не смешивать три типа контекста
+Live tools возвращают актуальные задачи, письма, календарь, состояние PR. RAG возвращает документальные свидетельства, включая прошлые версии. Personal Memory возвращает подтвержденный профиль, цели и предпочтения. Для запроса об актуальном сроке выбирать live, а не устаревший embedding; если live недоступен, показать дату последнего наблюдения и неполноту.
+## 2. Модель памяти
+| Тип | Что хранит | Правило записи |
+|---|---|---|
+| Semantic | факты о навыках, проектах, областях знания | подтверждение или источник |
+| Episodic | события, завершенные действия, обсуждения | наблюдение с источником/временем; не считать предположение событием |
+| Procedural | предпочтительные процессы и Skills | подтвержденная версия |
+| Strategic | цели, критерии результата, приоритеты | ввод/подтверждение владельца |
+| Working | текущая сессия, открытые вопросы | TTL, не автоматически долговременная |
+| Reflective | уроки, выводы, гипотезы о привычках | предложить на подтверждение, не психологический диагноз |
+MemoryItem: id, category, key, value, provenance, kind fact/preference/observation/hypothesis, confidence, status proposed/confirmed/rejected/superseded/deleted, valid_from/to, observed_at, last_verified, sensitivity, retention, owner_version. Приоритет: явная актуальная установка владельца > подтвержденное прошлое > наблюдение > гипотеза. Конфликт показать; не тихо заменять память. Просмотр, правка, удаление, экспорт, журнал. Запрет скрытого накопления чувствительных выводов.
+Decision: question, options, criteria, chosen, rationale, evidence, decided_at, review_at, observed_outcome, status; предложение не равно принятое решение.
+## 3. Корпус RAG
+P0: выбранные проектные документы, учебные инструкции, промпты/Skills, исследования и решения, небольшая утвержденная личная библиотека. Не индексировать всю почту, всю переписку или диск по умолчанию. P1: отдельные коллекции протоколов/уроков/интересов с разрешением. Profile/goals остаются structured, при необходимости RAG связывает подтвержденные описания, не владеет ими.
+Document: source_ref, collection, original locator, version/hash, mime, title, language, published/modified/indexed_at, sensitivity, access_scope, deleted, status indexed/partial/error/stale. Chunk: doc_version_id, stable ordinal/section/page, normalized text, embedding_model_id, vector, hash, token count. Индекс производный, восстанавливаемый, не SoT.
+## 4. Pipeline
+Allowlist/consent → read/parse (MD/PDF/text initially) → sanitize and classify → version/hash dedupe → chunk by headings/paragraphs (candidate 400–800 tokens, evaluate) → metadata + embedding + FTS → stage and switch version atomically → retrieval → answer with citations. OCR/complex scans later or mark partial; never silently treat unreadable pages as absent content. 
+Hybrid retrieval: query intent, filter allowed collections/access/version before search, FTS for exact names/IDs + vectors for meaning, rank fusion (candidate RRF), optional rerank only if benchmark shows value. Retrieve bounded context, include source IDs and exact page/section/commit/version; answer only supported claims and distinguish suggestions. If insufficient evidence, clarify or say unknown. Current version default, historical version explicit. Index freshness and source revocation checked before use; fail closed for revoked/unknown access. LLM sees minimum necessary excerpts, not all files. External text is untrusted data; no tool calls based on embedded instructions.
+Update: changed hash new version; default search excludes superseded; removal/access revoke immediately excludes chunks, async physical cleanup; retain minimal noncontent tombstone; purge caches/derived summaries and replay purge manifest after backup restore. Reindex on embedding change with staged version, export originals/metadata/links independent of model.
+## 5. Technologies (hypotheses, not validated)
+PostgreSQL + pgvector + FTS first candidate, single isolated DB. Test Russian/English retrieval and vector extension availability. Alternative Qdrant if measured need, existing knowledge platforms if they provide trustworthy export, access filtering, citations and deletion. Docling or simple parser candidate; LlamaIndex/Haystack/LangChain optional, prefer thin code or existing OpenClaw capability after verification. Embeddings local vs cloud selected by privacy, quality, cost, RAM/latency. No cloud embedding of private corpus until explicit consent and retention policy checked. GraphRAG and Neo4j defer until typed SQL links insufficient.
+## 6. Evaluation
+Freeze 30–50 representative synthetic/authorized questions: exact lookup, semantic, version conflict, nonexistent answer, revoked document, mixed live+RAG, Russian technical vocabulary, injection. Targets proposed: recall@5 >=85% for labeled relevant source retrieval, >=90% factual claims supported on answer set, 100% source references for material facts, zero cross-scope retrieval/unsupported critical deadlines, deletion test pass. Count abstentions separately, evaluate answer quality and retrieval separately, record model/corpus hash, latency/cost. No claim of measured quality before experiment. 
