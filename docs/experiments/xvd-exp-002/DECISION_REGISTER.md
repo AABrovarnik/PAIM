@@ -8,5 +8,7 @@ Public project decisions only. No private observations or usage logs. This is a 
 | D004 | 2026-11-26 | OpenClaw deployment, custom RAG/backend deferred during pilot | CONFIRMED pilot boundary | Stage A blocked; no permanent rejection |
 | D005 | 2026-11-26 | Accept PAIM V3 as final architecture | NOT DECIDED | independent board pending, V3 DRAFT; V2 not superseded |
 | D006 | 2026-11-26 | Adopt XVD as validated methodology | NOT DECIDED | research hypothesis; no measured superiority |
+| D007 | 2026-11-26 | Defer Claude / Claude Code; no funding allocated | OWNER PROPOSAL / operating constraint | no Claude calls or purchases; revisit only after owner allocates budget |
+| D008 | 2026-11-26 | Use Codex as primary application development tool | OWNER PROPOSAL / recommended default | applies to separately authorized BUILD tasks, not a mandate to write code during EXP-002; independent verification remains distinct |
 ## New record template
 ID / question / date / alternatives / evidence (links+version) / expected value / cash + human time / risk + reversibility / recommendation / owner decision / status / review trigger / observed outcome. Keep one paragraph where sufficient. No speculative decisions recorded as approved. Private usage logs stay outside repository.
