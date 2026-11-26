@@ -1,0 +1,12 @@
+# Windows / PowerShell / Codex preflight v0.2
+Use only applicable checks. No script execution policy changes, elevated OS privileges or protection disabling as routine fixes.
+## Repository and runtime
+In target directory: git rev-parse --show-toplevel; git status --short; git branch --show-current; git rev-parse HEAD; node --version; npm.cmd --version. Empty branch output can mean detached HEAD, acceptable for isolated non-commit experiments if intended. Unborn repo/incorrect branch/dirty tree => resolve scope without discarding changes. Verify lockfile, manifests, scripts and existing project instructions; never display .env contents or credentials. Check installed runtime against actual dependency requirements, not just minimum version.
+## Dependency preparation
+Use existing lockfile and reviewed install scripts/registry sources; install only with owner authorization in isolated target. For npm project with lockfile, npm.cmd ci --no-audit --no-fund is a candidate, not automatic permission. Do not update dependencies or lockfiles; no global installs. Review lifecycle scripts and native dependencies, warnings and actual allow-script enforcement; don't assume whitelist warning harmless. No real DB/API keys inherited; use synthetic data/mock and verified isolated test environment.
+## PowerShell script policy
+If npm.ps1 is blocked, check Get-Command npm -All and Get-Command npm.cmd; use trusted installed npm.cmd when appropriate, not Set-ExecutionPolicy Bypass. Respect organization policy; if .cmd also blocked, stop. No privilege escalation.
+## Child process EPERM
+Capture exact command/phase/error. In EXP-003 Vite/esbuild failed inside sandbox and passed outside with same dependencies. Could also be OS permissions, endpoint protection, file locks or runtime issues; not proof in other cases. First inspect script and scope, check safe baseline. Only if authorized, request one narrow outside-sandbox invocation for verified build/test with mock/isolated data. No persistent allow, no global sandbox disable, no elevated OS rights. If repeated outside sandbox, stop and diagnose; no automatic version changes or security bypass.
+## Baseline and evidence
+Run approved build/test before edits; record versions, commands/exit codes and baseline results; verify manifest hashes and git status after. Distinguish source inspection, behavior tests and full workflow. Track setup/retries separately from implementation and owner active time. Stop if prerequisites/authority/cost unclear. Never treat successful install as acceptance.
