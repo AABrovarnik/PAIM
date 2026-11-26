@@ -1,0 +1,18 @@
+# XVD-EXP-003 — Codex Starter Kit Validation
+2026-11-26 | ACTIVE preparation approved by owner. Kit snapshot b083644dcd6c93e1d97f87d8058c1e8a0ff65262, branch research/xvd-starter-kit, draft PR #6. PAIM Zero EXP-002 remains unchanged.
+## Hypothesis
+For a small application change, Codex with XVD produces at least equally acceptable outcomes with lower or justified human effort, rework and risk. Null/alternative: ordinary Codex is equally good or cheaper; extra ceremony may not pay off. One task/pair is exploratory, not causal proof.
+## Candidate and preflight
+Preferred school admin application. Remote repository metadata found, README/package/AGENTS fetch returned 404 and searches empty. Cause unknown; do not infer missing files or actual stack. Ask owner to use locally available clean checkout; Codex read-only inventory, no secret contents. Keep private code, actual repo identifiers, logs and credentials out of public experiment repo. If unavailable, use a small synthetic fixture or another authorized local project and label changed scope before runs.
+## Candidate task
+Improve empty state of an existing knowledge-base/admin list. Only if actual UI and tests make this meaningful; otherwise propose equivalent small reversible UI task for owner approval. No auth/role/schema/backend/LLM changes. Freeze exact task, target, criteria and base SHA after preflight.
+## Design
+Two fresh Codex sessions, same model/effort/version, environment, existing repo instructions, base commit, task and criteria. Separate clean local workspaces. A: ordinary Codex with existing project instructions. B: same plus XVD kit (root AGENTS.md merged only in isolated B with existing instructions preserved). No result sharing or carryover. Alternate/randomize order across future pairs; for first pair record actual order. Separate setup cost from per-task effort. No new paid calls, dependencies, deployment, push, merge or live data; owner must approve actual task and local modifications. No production changes.
+## Proposed budget (not approved separately)
+$0 new spend, existing Codex access only; owner active <=30 min total, <=2 implementation attempts per arm, <=20 min elapsed per arm; stop on limit, missing permission or unsafe dependency. No Claude. No new API billing. Usage quota cost unknown unless observed. Do not reduce hard safety gates.
+## Acceptance (freeze before run)
+Existing empty list provides clear Russian guidance; nonempty behavior unchanged; loading/error remain distinct if present; no unauthorized functional changes; relevant existing tests plus a focused regression check run or explicitly blocked. No fabricated PASS. Exact selectors and test command determined from preflight. Same rubric for A/B; test harness not shared from one result to the other. 
+## Evaluation
+Owner or separate reviewer sees anonymized A/B diffs and test outputs where feasible, without method label; same reviewer/rubric. Mandatory gates: acceptance, regression, no unauthorized changes/disclosure. Compare human active minutes (including setup, review, corrections), elapsed, accepted result, defects by severity, iterations, added spend and usage/unknown, overhead/docs, rollback. Do not score blocked result as zero cost or claim independent model validation from same model. Prefer lower cost among passing outcomes, otherwise diagnose. Report sample size, order, baseline and confidence. Retain sanitized aggregate only. 
+## Status
+Preflight local NOT RUN, exact task NOT FROZEN, A/B NOT RUN, evaluation NOT RUN. No permission to modify production, merge or expand scope. Next: run PREFLIGHT_PROMPT.md locally, return sanitized output, confirm task/budget.
